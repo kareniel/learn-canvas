@@ -7,7 +7,8 @@ var noop = () => {}
 var canvas = document.createElement('canvas')
 var ctx = canvas.getContext('2d')
 var buttons = document.createElement('p')
-var code = document.createElement('pre')
+var pre = document.createElement('pre')
+var code = document.createElement('code')
 var arrows = new Image()
 var tile = new Image()
 
@@ -42,9 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   br()
   createButton('drawTile', drawTile)
 
+  pre.appendChild(code)
   rootEl.appendChild(canvas)
   rootEl.appendChild(buttons)
-  rootEl.appendChild(code)
+  rootEl.appendChild(pre)
 
 })
 
