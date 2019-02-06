@@ -1,0 +1,17 @@
+{
+  "name": "@kareniel/learn-canvas",
+  "version": "0.0.0",
+  "description": "explorable",
+  "main": "index.js",
+  "scripts": {
+    "start": "budo . --live"
+  },
+  "keywords": [
+    "canvas"
+  ],
+  "author": "kareniel",
+  "license": "MIT",
+  "devDependencies": {
+    "budo": "^11.6.0"
+  }
+}
