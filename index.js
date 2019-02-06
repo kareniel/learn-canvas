@@ -4,54 +4,61 @@ const HEIGHT = 256
 const GRID_WIDTH = 16
 
 var noop = () => {}
-
-var el = document.createElement('canvas')
-var ctx = el.getContext('2d')
+var canvas = document.createElement('canvas')
+var ctx = canvas.getContext('2d')
 var buttons = document.createElement('p')
 var code = document.createElement('pre')
 var arrows = new Image()
-
-arrows.src = 'arrows.png'
-arrows.onload = function () {
-  redraw(noop)
-}
-
 var tile = new Image()
-arrows.onload = function () {
-  redraw(noop)
+
+canvas.width = WIDTH
+canvas.height = HEIGHT
+canvas.style.border = '1px solid black'
+
+arrows.onload = () => redraw(noop)
+tile.onload = () => redraw(noop)
+
+arrows.src = getBaseURL() + '/arrows.png'
+tile.src = getBaseURL() + '/tile.png'
+
+document.addEventListener('DOMContentLoaded', () => {
+  var rootEl = document.getElementById('learn-canvas') || document.body
+
+  createButton('resetTransform', resetTransform)
+  createButton('center', center)
+  createButton('clear', clear)
+  br()
+  createButton('flipX', flipX)
+  createButton('flipY', flipY)
+  br()
+  createButton('rotate45', rotate45)
+  createButton('rotate90', rotate90)
+  createButton('rotate180', rotate180)
+  br()
+  createButton('translateTop', translateTop)
+  createButton('translateRight', translateRight)
+  createButton('translateBottom', translateBottom)
+  createButton('translateLeft', translateLeft)
+  br()
+  createButton('drawTile', drawTile)
+
+  rootEl.appendChild(canvas)
+  rootEl.appendChild(buttons)
+  rootEl.appendChild(code)
+
+})
+
+function getBaseURL () {
+  var url = document.currentScript
+    ? document.currentScript.src
+    : document.URL
+
+  return url.substring(0, url.lastIndexOf("/"))
 }
-
-tile.src = 'tile.png'
-
-el.width = WIDTH
-el.height = HEIGHT
-el.style.border = '1px solid black'
-
-document.body.appendChild(el)
-
-createButton('resetTransform', resetTransform)
-createButton('center', center)
-createButton('clear', clear)
-br()
-createButton('flipX', flipX)
-createButton('flipY', flipY)
-br()
-createButton('rotate45', rotate45)
-createButton('rotate90', rotate90)
-createButton('rotate180', rotate180)
-br()
-createButton('translateTop', translateTop)
-createButton('translateRight', translateRight)
-createButton('translateBottom', translateBottom)
-createButton('translateLeft', translateLeft)
-br()
-createButton('drawTile', drawTile)
-
-document.body.appendChild(buttons)
-document.body.appendChild(code)
 
 function br () {
   var el = document.createElement('br')
+
   buttons.appendChild(el)
 }
 
@@ -118,9 +125,11 @@ function center () {
 function translateTop () {
   ctx.translate(0, -GRID_WIDTH)
 }
+
 function translateBottom () {
   ctx.translate(0, GRID_WIDTH)
 }
+
 function translateLeft () {
   ctx.translate(-GRID_WIDTH, 0)
 }
@@ -132,9 +141,11 @@ function translateRight () {
 function rotate45 () {
   ctx.rotate(toRadian(45))
 }
+
 function rotate90 () {
   ctx.rotate(toRadian(90))
 }
+
 function rotate180 () {
   ctx.rotate(toRadian(180))
 }
