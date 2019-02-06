@@ -1,7 +1,6 @@
 {
-  "name": "@kareniel/learn-canvas",
+  "name": "@krnl/learn-canvas",
   "version": "1.0.0",
-  "private": true,
   "description": "explorable",
   "main": "index.js",
   "scripts": {
