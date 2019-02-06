@@ -1,10 +1,12 @@
 {
   "name": "@kareniel/learn-canvas",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "private": true,
   "description": "explorable",
   "main": "index.js",
   "scripts": {
-    "start": "budo . --live"
+    "start": "budo . --live",
+    "build": "mkdir -p dist && browserify -p tinyify . -o dist/bundle.js"
   },
   "keywords": [
     "canvas"
@@ -12,6 +14,7 @@
   "author": "kareniel",
   "license": "MIT",
   "devDependencies": {
-    "budo": "^11.6.0"
+    "budo": "^11.6.0",
+    "tinyify": "^2.5.0"
   }
 }
